@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PersonController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +13,7 @@ use App\Http\Controllers\PersonController;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
-    // These are the routes for the frontend persons
-    Route::prefix('persons')->group(function () {
-        Route::get('/list', [PersonController::class,'index']); //muestra todos los registros
-        Route::post('/store', [PersonController::class,'store']); // crea un registro
-        Route::put('/update/{id}', [PersonController::class,'update']); // actualiza un registro
-        Route::delete('/destroy/{id}', [PersonController::class,'destroy']); //elimina un registro
-    });
