@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,13 +14,15 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-/*oute::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
 
 Route::prefix('/user')->group(function () {
-    Route::post('/login', [LoginController::class,'store']); // crea un registro
-
+    Route::get('/detail', 'UserController@detail')->middleware('auth:api');
+    Route::post('/login', 'UserController@login'); // authentication
+    Route::post('/register', 'UserController@register');
+    Route::get('/logout', 'UserController@logout')->middleware('auth:api');
 });
 
 /*
