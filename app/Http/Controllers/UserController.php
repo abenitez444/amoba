@@ -17,7 +17,7 @@ class UserController extends Controller
             $success['access_token'] = $user
                 ->createToken('Passport Api')
                 ->accessToken;
-            return response()->json($success, 200);
+                return response()->json(['message' => 'Se ha iniciado sesión.'], 200);
 
         } else {
             return response()->json(['error' => 'Sus credenciales de acceso no coinciden con nuestros registros.'], 401);

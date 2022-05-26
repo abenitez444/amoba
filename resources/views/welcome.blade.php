@@ -5,10 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-          <!-- Scripts -->
-            <link href="{{ mix('js/app.js') }}" rel="stylesheet">
-            <script src="https://cdn.tailwindcss.com"></script>
-        
           <!-- Styles -->
           <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>
@@ -17,7 +13,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('app') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -27,12 +23,13 @@
                     @endauth
                 </div>
             @endif
-
-            <div class="content bg-black">
-                <div class="italic hover:not-italic text-center text-lg text-white">
-                    Laravel + vue + tailwind css
-                </div>
+            <div id="app">
+                <div class="content bg-black">
+                    <login />
+                </div>    
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
     </body>
 </html>
