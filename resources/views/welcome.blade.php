@@ -15,10 +15,10 @@
                     @auth
                         <a href="{{ route('app') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Iniciar</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Registrar</a>
                         @endif
                     @endauth
                 </div>
@@ -30,6 +30,5 @@
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
     </body>
 </html>
