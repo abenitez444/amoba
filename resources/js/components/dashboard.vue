@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <div v-if="loggedUser">
+    <navbar></navbar>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 
     <div class="flex w-full">
@@ -12,7 +14,7 @@
             <div class="text-right text-sm">Personas</div>
             <div class="text-right text-3xl">
                 <div class="mt-7 text-center">
-                    <button @click="modal" class="bg-blue-500 w-20 py-3 rounded-xl text-white shadow-xm hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+                    <button  class="bg-blue-500 w-20 py-3 rounded-xl text-white shadow-xm hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
                         <i class="fas fa-plus"></i></i>
                     </button>
                 </div>
@@ -36,17 +38,32 @@
     </div>
 </template>
 <script>
+    import Auth from '../Auth.js';   
+    import Navbar from '../navbar';
+
     export default {
+        components: {
+            Auth,
+            Navbar
+        },
         data () {
             return {
-                user: this.auth.user
+                loggedUser: this.auth.token
             }
-
         },
-      
-        methods:{
-            modal(){
-                
+        mounted(){
+            let loggedUser = this.auth.token
+        },
+        methods: {
+            login() {
+                this.axios.post('http://127.0.0.1:8000/api/login', this.user)
+                    .then(({data}) => {
+                        Auth.login(data.access_token,data.user); 
+                        this.$router.push('/dashboard');
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             }
         }
     }

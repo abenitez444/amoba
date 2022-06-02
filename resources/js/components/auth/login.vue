@@ -6,7 +6,7 @@
                 <div class="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
                 <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
                     <label for="" class="block mt-3 text-sm text-gray-700 text-center font-semibold">
-                        Login
+                        Iniciar
                     </label>
                         <div>
                             <input v-model="user.email" type="email" placeholder="Correo electronico" class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">

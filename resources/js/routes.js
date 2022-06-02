@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Login from './components/auth/login.vue';
 import Register from './components/auth/register.vue';
 import Dashboard from './components/dashboard.vue';
+import Person from './components/persons/person.vue';
 
 const routes = [
     {
@@ -22,6 +23,14 @@ const routes = [
         path: '/dashboard',
         component: Dashboard,
         name: "Dashboard",
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/person',
+        component: Person,
+        name: "Person",
         meta: {
             requiresAuth: true
         }

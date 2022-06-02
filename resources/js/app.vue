@@ -1,49 +1,35 @@
 <template>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav" v-if="loggedUser">
-                    <h5>Dashboard</h5>
-
-                    <a href="javascript:void(0)" @click="logout()" class="nav-item nav-link ml-3">Logout</a>
-                </div>
-                <div v-else>
-                    <router-link to="/login">Login</router-link>
-                    <router-link to="/register">Register</router-link>
-                </div>
-            </div>
-        </nav>
-        <router-view> </router-view>
-    </div>
+        <div class="navbar-nav" v-if="loggedUser">
+             <router-view></router-view>
+        </div>
+        <div v-else>
+          <navbar></navbar>
+          <router-view></router-view>
+        </div>
+   
 </template>
 
 <script>
     import Auth from './Auth.js';
+    import Navbar from './navbar';
+    import Person from './components/persons/person.vue';
+
     export default {
+        components: {
+            Auth,
+            Navbar,
+            Person
+        },
         data() {
             return {
                 loggedUser: this.auth.user
             }
         },
-        created(){
-            this.loggeUser();
+        mounted(){
+            let loggedUser = this.auth.token
         },
-        watch: {
-            'auth.user': {
-                handler(newValue, oldValue) {
-                  console.log(newValue)
-                },
-                deep: true
-            }
-        },
+       
         methods: {
-            loggeUser(){
-                if(this.auth.user){
-                    console.log("si esta logueado");
-                }else{
-                    console.log("No esta logueado")
-                }
-            },
             logout() {
                 this.axios.post('http://127.0.0.1:8000/api/logout')
                 .then(({data}) => {
